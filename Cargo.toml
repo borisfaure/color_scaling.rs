@@ -1,0 +1,14 @@
+[package]
+name = "color_scaling"
+version = "0.0.1"
+authors = [ "Boris Faure <billiob@gmail.com>" ]
+license = "BSD-2-Clause"
+
+
+[lib]
+name = "color_scaling"
+path = "src/lib.rs"
+
+[dependencies]
+image = "*"
+num = "*"
