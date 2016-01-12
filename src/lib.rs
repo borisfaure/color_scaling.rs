@@ -17,7 +17,17 @@ fn scale<T: Primitive + FromPrimitive>(start: T, end: T, f: f64) -> T {
 
 pub fn scale_rgb<T: Primitive + FromPrimitive>(start: &Rgb<T>, end: &Rgb<T>, f: f64) -> Result<Rgb<T>, &'static str> {
     if f.is_nan() || f < 0.0_f64 || f > 1.0_f64 {
-        Err("f is outside [0; 1]")
+        if start == end {
+            Ok(Rgb{
+                data: [
+                    start.data[0],
+                    start.data[1],
+                    start.data[2],
+                ]
+            })
+        } else {
+            Err("f is outside [0; 1]")
+        }
     } else {
         Ok(Rgb{
             data: [
@@ -36,6 +46,7 @@ fn test_scaling_rgb_u8() {
     let orange    : Rgb<u8> = Rgb{ data: [255, 127,   0] };
     let turquoise : Rgb<u8> = Rgb{ data: [  0, 127, 255] };
 
+    /* invalid values for f */
     let r = scale_rgb(&white, &black, -0.5);
     assert!(r.is_err());
     let r = scale_rgb(&white, &black, 1.5);
@@ -44,6 +55,20 @@ fn test_scaling_rgb_u8() {
     assert!(r.is_err());
     let r = scale_rgb(&white, &black, std::f64::NAN);
     assert!(r.is_err());
+
+    /* Accept if it's the same color */
+    let r = scale_rgb(&white, &white, -0.5);
+    assert!(r.is_ok());
+    assert!(r.unwrap() == white);
+    let r = scale_rgb(&white, &white, 1.5);
+    assert!(r.is_ok());
+    assert!(r.unwrap() == white);
+    let r = scale_rgb(&white, &white, std::f64::INFINITY);
+    assert!(r.is_ok());
+    assert!(r.unwrap() == white);
+    let r = scale_rgb(&white, &white, std::f64::NAN);
+    assert!(r.is_ok());
+    assert!(r.unwrap() == white);
 
     let r = scale_rgb(&white, &black, 0.5);
     assert!(r.is_ok());
