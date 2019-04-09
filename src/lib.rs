@@ -1,11 +1,11 @@
 extern crate image;
-extern crate num;
+extern crate num_traits;
 
 use image::{
     Rgb,
     Primitive,
 };
-use num::FromPrimitive;
+use num_traits::FromPrimitive;
 
 fn scale<T: Primitive + FromPrimitive>(start: T, end: T, f: f64) -> T {
     let start : f64 = start.to_f64().unwrap();
