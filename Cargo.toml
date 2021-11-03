@@ -1,11 +1,12 @@
 [package]
 name = "color_scaling"
-version = "0.0.4"
+version = "0.0.5"
 authors = [ "Boris Faure <billiob@gmail.com>" ]
 license = "BSD-2-Clause"
 readme = "README.md"
-repository = "https://github.com/billiob/color_scaling.rs/"
+repository = "https://github.com/borisfaure/color_scaling.rs/"
 description = "Functions to scale colors: get a weighted color between 2 colors"
+edition = '2021'
 
 
 [lib]
@@ -13,5 +14,5 @@ name = "color_scaling"
 path = "src/lib.rs"
 
 [dependencies]
-image = "0.21"
+image = "0.23"
 num-traits = "0.2.*"
