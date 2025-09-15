@@ -1,7 +1,7 @@
 [package]
 name = "color_scaling"
 version = "0.0.5"
-authors = [ "Boris Faure <billiob@gmail.com>" ]
+authors = [ "Boris Faure <boris@fau.re>" ]
 license = "BSD-2-Clause"
 readme = "README.md"
 repository = "https://github.com/borisfaure/color_scaling.rs/"
@@ -14,5 +14,5 @@ name = "color_scaling"
 path = "src/lib.rs"
 
 [dependencies]
-image = "0.23"
-num-traits = "0.2.*"
+image = "0.25"
+num-traits = "0.2"
