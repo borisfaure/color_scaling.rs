@@ -17,7 +17,7 @@ pub fn scale_rgb<T: Primitive + FromPrimitive>(
     end: &Rgb<T>,
     f: f64,
 ) -> Result<Rgb<T>, &'static str> {
-    if f.is_nan() || f < 0.0_f64 || f > 1.0_f64 {
+    if f.is_nan() || !(0.0_f64..=1.0_f64).contains(&f) {
         if start == end {
             Ok(Rgb([start[0], start[1], start[2]]))
         } else {
